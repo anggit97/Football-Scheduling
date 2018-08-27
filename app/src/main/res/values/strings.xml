@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Football Club Scheduling</string>
+    <string name="prev_schedule">Pertandingan sebelumnya</string>
+    <string name="next_schedule">Pertandingan Selanjutnya</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="teams">Team</string>
+    <string name="favorites">Favorit</string>
+
+
+    <string name="real_madrid">Real Madrid Club de Fútbol, umumnya dikenal sebagai Real Madrid, adalah klub sepak bola profesional yang berbasis di Madrid, Spanyol. Didirikan pada tahun 1902 sebagai Madrid Football Club, secara tradisional mengenakan kostum kandang putih.</string>
+    <string name="barcelona">Fútbol Club Barcelona, juga dikenal sebagai Barcelona atau Barça, adalah klub sepak bola profesional yang berbasis di Barcelona, Catalunya, Spanyol.</string>
+    <string name="mu">Manchester United Football Club adalah sebuah klub sepak bola profesional Inggris yang berbasis di Old Trafford, Manchester Raya, yang bermain di Liga Inggris.</string>
+    <string name="liverpool">Liverpool Football Club adalah sebuah klub sepak bola asal Inggris yang berbasis di Kota Liverpool. Saat ini Liverpool adalah peserta Liga Utama Inggris..</string>
+    <string name="arsenal">Arsenal Football Club adalah klub sepak bola profesional Inggris yang berbasis di daerah Holloway, London. didirikan pada 1886 dengan nama Dial Square</string>
+    <string name="chelsea">Chelsea Football Club adalah sebuah klub sepak bola Inggris yang bermarkas di Fulham, London. Chelsea didirikan pada tahun 1905 dan kini berkompetisi di Liga Utama Inggris. </string>
+    <string name="juventus">Juventus Football Club S.p.A., biasa disebut sebagai Juventus dan popular dengan nama Juve, adalah klub sepak bola profesional Italia yang berbasis di Turin, Piedmont.</string>
+    <string name="munich">Fußball-Club Bayern München e.V., juga dikenal sebagai FC Bayern München, FC Bayern Munich, atau FC Bayern, adalah sebuah klub olahraga Jerman yang berbasis di München, Bavaria</string>
+
+    <string-array name="names">
+        <item>Real Madrid</item>
+        <item>Barcelona</item>
+        <item>Manchaster United</item>
+        <item>Liverpool</item>
+        <item>Arsenal</item>
+        <item>Chelsea</item>
+        <item>Juventus</item>
+        <item>Bayern Munich</item>
+    </string-array>
+
+    <string-array name="desc">
+        <item>@string/real_madrid</item>
+        <item>@string/barcelona</item>
+        <item>@string/mu</item>
+        <item>@string/liverpool</item>
+        <item>@string/arsenal</item>
+        <item>@string/chelsea</item>
+        <item>@string/juventus</item>
+        <item>@string/munich</item>
+    </string-array>
+
+    <array name="clubs">
+        <item>@drawable/rcm</item>
+        <item>@drawable/barca</item>
+        <item>@drawable/mu</item>
+        <item>@drawable/liverpool</item>
+        <item>@drawable/arsenal</item>
+        <item>@drawable/chelsea</item>
+        <item>@drawable/juve</item>
+        <item>@drawable/munich</item>
+    </array>
+
+</resources>

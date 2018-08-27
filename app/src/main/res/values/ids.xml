@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="root_layout" type="id" />
+    <item name="navigation_bottom_view" type="id" />
+    <item name="rv_prev_schedule" type="id" />
+    <item name="tv_test" type="id" />
+    <item name="tv_date" type="id" />
+    <item name="tv_home_team" type="id" />
+    <item name="tv_home_team_score" type="id" />
+    <item name="tv_vs" type="id" />
+    <item name="tv_away_team" type="id" />
+    <item name="tv_away_team_score" type="id" />
+    <item name="swipeRefreshLayout" type="id" />
+    <item name="iv_team" type="id" />
+    <item name="tv_team" type="id" />
+    <item name="team_badge" type="id" />
+    <item name="team_name" type="id" />
+    <item name="schedule_date" type="id" />
+    <item name="team_home" type="id" />
+    <item name="team_away" type="id" />
+    <item name="team_home_score" type="id" />
+    <item name="team_away_score" type="id" />
+</resources>

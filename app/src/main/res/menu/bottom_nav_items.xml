@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_prev"
+        android:title="@string/prev_schedule"
+        android:icon="@drawable/ic_chevron_left_black_24dp"
+        />
+    <item
+        android:id="@+id/menu_next"
+        android:title="@string/next_schedule"
+        android:icon="@drawable/ic_chevron_right_black_24dp"
+        />
+</menu>
