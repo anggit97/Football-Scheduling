@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import com.anggitprayogo.footballclub_scheduling.R
+import com.anggitprayogo.footballclub_scheduling.screen.favouriteteamsfragment.FavoriteTeamsFragment
 import com.anggitprayogo.footballclub_scheduling.screen.nextschedulefragment.NextScheduleFragment
 import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.PrevScheduleFragment
+import com.anggitprayogo.footballclub_scheduling.screen.schedulefavouritefragment.ScheduleFavouriteFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(){
@@ -32,6 +34,11 @@ class MainActivity : AppCompatActivity(){
             R.id.menu_next->{
                 val nextScheduleFragment = NextScheduleFragment()
                 openFragment(nextScheduleFragment)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.menu_favourite->{
+                val favouriteTeamFragment = ScheduleFavouriteFragment()
+                openFragment(favouriteTeamFragment)
                 return@OnNavigationItemSelectedListener true
             }
         }

@@ -2,6 +2,7 @@ package com.anggitprayogo.footballclub_scheduling.screen.schedulefavouritefragme
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log.d
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,8 @@ import org.jetbrains.anko.cardview.v7.cardView
 class ScheduleFavouriteAdapter(val schedules: List<ScheduleTeamFavourite>,
                                val listener: (ScheduleTeamFavourite) -> Unit): RecyclerView.Adapter<ScheduleFavouriteViewHolder>() {
 
+    private val TAG: String = javaClass.simpleName
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleFavouriteViewHolder {
        return ScheduleFavouriteViewHolder(ScheduleUI().createView(AnkoContext.Companion.create(parent.context, parent)))
     }
@@ -23,6 +26,7 @@ class ScheduleFavouriteAdapter(val schedules: List<ScheduleTeamFavourite>,
     override fun getItemCount(): Int = schedules.size
 
     override fun onBindViewHolder(holder: ScheduleFavouriteViewHolder, position: Int) {
+        d(TAG, schedules.get(position).scheduleId)
         holder.bindItems(schedules.get(position), listener);
     }
 
@@ -44,7 +48,9 @@ class ScheduleFavouriteViewHolder(view: View): RecyclerView.ViewHolder(view){
         teamHomeScoe.text = get.scoreTeamHome
         teamAwayScore.text = get.scoreTeamAway
 
-        listener(get)
+        itemView.setOnClickListener {
+            listener(get)
+        }
 
     }
 
@@ -63,12 +69,14 @@ class ScheduleUI: AnkoComponent<ViewGroup>{
                 lparams(width = matchParent, height = matchParent)
                 orientation = LinearLayout.VERTICAL
                 gravity = Gravity.CENTER_HORIZONTAL
+                padding = dip(10)
 
                 textView {
                     id = R.id.schedule_date
                     text = "12 Januari 2018"
                     textSize = 16f
-                    textColor = android.R.color.black
+                    gravity = Gravity.CENTER_HORIZONTAL
+//                    textColor = android.R.color.black
                 }.lparams(width = matchParent, height = wrapContent){
                     topMargin = dip(10)
                     bottomMargin = dip(5)
@@ -84,7 +92,8 @@ class ScheduleUI: AnkoComponent<ViewGroup>{
                         id = R.id.team_home
                         text = "MU"
                         textSize = 14f
-                        textColor = android.R.color.holo_red_light
+                        gravity = Gravity.CENTER_HORIZONTAL
+//                        textColor = android.R.color.holo_red_light
                     }.lparams(width = 0, height = wrapContent){
                         weight = 4.5f
                     }
@@ -93,7 +102,7 @@ class ScheduleUI: AnkoComponent<ViewGroup>{
                         id = R.id.team_home_score
                         text = "2"
                         textSize = 14f
-                        textColor = android.R.color.holo_red_light
+//                        textColor = android.R.color.holo_red_light
                     }.lparams(width = 0, height = wrapContent){
                         weight = 1f
                     }
@@ -101,7 +110,7 @@ class ScheduleUI: AnkoComponent<ViewGroup>{
                     textView {
                         text = "VS"
                         textSize = 14f
-                        textColor = android.R.color.holo_red_light
+//                        textColor = android.R.color.holo_red_light
                     }.lparams(width = 0, height = wrapContent){
                         weight = 1f
                     }
@@ -110,7 +119,7 @@ class ScheduleUI: AnkoComponent<ViewGroup>{
                         id = R.id.team_away_score
                         text = "3"
                         textSize = 14f
-                        textColor = android.R.color.holo_red_light
+//                        textColor = android.R.color.holo_red_light
                     }.lparams(width = 0, height = wrapContent){
                         weight = 1f
                     }
@@ -119,7 +128,8 @@ class ScheduleUI: AnkoComponent<ViewGroup>{
                         id = R.id.team_away
                         text = "CHELSEA"
                         textSize = 14f
-                        textColor = android.R.color.holo_red_light
+                        gravity = Gravity.CENTER_HORIZONTAL
+//                        textColor = android.R.color.holo_red_light
                     }.lparams(width = 0, height = wrapContent){
                         weight = 4.5f
                     }

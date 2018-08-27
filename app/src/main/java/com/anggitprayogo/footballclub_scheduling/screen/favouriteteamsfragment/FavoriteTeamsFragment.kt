@@ -1,6 +1,7 @@
 package com.anggitprayogo.footballclub_scheduling.screen.favouriteteamsfragment
 
 import android.content.Context
+import android.database.sqlite.SQLiteConstraintException
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.R.attr.colorAccent
@@ -18,6 +19,7 @@ import com.anggitprayogo.footballclub_scheduling.data.database
 import org.jetbrains.anko.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.swipeRefreshLayout

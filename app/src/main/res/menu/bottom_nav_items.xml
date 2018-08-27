@@ -9,4 +9,10 @@
         android:title="@string/next_schedule"
         android:icon="@drawable/ic_chevron_right_black_24dp"
         />
+
+    <item
+        android:id="@+id/menu_favourite"
+        android:title="@string/next_schedule"
+        android:icon="@drawable/ic_add_to_favorites"
+        />
 </menu>
