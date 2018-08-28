@@ -1,16 +1,24 @@
 package com.anggitprayogo.footballclub_scheduling.screen.detailschedule.presenter
 
+import com.anggitprayogo.footballclub_scheduling.api.ApiRepository
+import com.anggitprayogo.footballclub_scheduling.api.TheSportDBApi
 import com.anggitprayogo.footballclub_scheduling.network.ServiceGenerator
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_event.Response
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.Teams
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.view.DetailScheduleView
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import org.jetbrains.anko.coroutines.experimental.bg
 import retrofit2.Call
 import retrofit2.Callback
 
 class DetailSchedulePresenter(val view: DetailScheduleView,
                               val retrofit: ServiceGenerator,
-                              val id: String) {
+                              val id: String,
+                              val gson: Gson,
+                              val apiRepository: ApiRepository) {
 
     fun getDetailEvent(){
         view.onProgress()
@@ -36,6 +44,23 @@ class DetailSchedulePresenter(val view: DetailScheduleView,
             }
 
         })
+    }
+
+    fun getDetailEventCoroutine(){
+        view.onProgress()
+
+        async(UI) {
+            val data = bg {
+                gson.fromJson(
+                        apiRepository.doRequest(TheSportDBApi.getDetailSchedule(id)),
+                        Response::class.java
+                )
+            }
+
+            view.showData(data.await().events?.get(0))
+            view.postProgress()
+
+        }
     }
 
     fun getDetailTeam(id: String, str: String){

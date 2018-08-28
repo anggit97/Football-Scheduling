@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.anggitprayogo.footballclub_scheduling.R
+import com.anggitprayogo.footballclub_scheduling.api.ApiRepository
 import com.anggitprayogo.footballclub_scheduling.constant.Constant
 import com.anggitprayogo.footballclub_scheduling.network.ServiceGenerator
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.DetailScheduleActivity
@@ -19,6 +20,7 @@ import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.Pre
 import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.model.DataEvent
 import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.ui.PrevScheduleAdapter
 import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.view.PrevScheduleView
+import com.google.gson.Gson
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
@@ -41,17 +43,20 @@ class NextScheduleFragment : Fragment(), PrevScheduleView{
         var view = PrevScheduleFragmentUI<Fragment>().createView(AnkoContext.Companion.create(ctx, this))
         retrofit = ServiceGenerator()
 
-        presenter = NextSchedulePresenter(this, retrofit)
+        val request = ApiRepository()
+        val gson = Gson()
+
+        presenter = NextSchedulePresenter(this, retrofit, gson, request)
 
         rvNextSchedule = view.findViewById(R.id.rv_prev_schedule)
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout)
 
         setupRecyclerview()
 
-        presenter.getNextSchedules()
+        presenter.getNextSchedulesCoroutine()
 
         swipeRefreshLayout.setOnRefreshListener {
-            presenter.getNextSchedules()
+            presenter.getNextSchedulesCoroutine()
         }
 
         // Inflate the layout for this fragment

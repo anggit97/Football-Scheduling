@@ -12,21 +12,27 @@ class TeamUI: AnkoComponent<ViewGroup>{
     override fun createView(ui: AnkoContext<ViewGroup>): View = with(ui) {
 
         cardView {
-            lparams(matchParent, dip(40))
+            lparams(width = matchParent, height = wrapContent)
 
             linearLayout {
-                lparams(matchParent, matchParent)
+                lparams(width = matchParent, height = matchParent)
                 orientation = LinearLayout.HORIZONTAL
                 weightSum = 12f
 
                 imageView {
                     id = R.id.iv_team
-                }.lparams(dip(0), matchParent)
+                }.lparams(width = dip(0), height = matchParent){
+                    weight = 4f
+                }
 
                 textView {
                     id = R.id.tv_team
-                    textColor = android.R.color.black
-                }.lparams(dip(0), matchParent)
+                }.lparams(width = dip(0), height =  matchParent){
+                    weight = 8f
+                    leftMargin = dip(10)
+                }
+            }.lparams(){
+                margin = dip(10)
             }
         }
 

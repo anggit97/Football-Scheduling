@@ -9,6 +9,7 @@ import android.util.Log.d
 import android.view.Menu
 import android.view.MenuItem
 import com.anggitprayogo.footballclub_scheduling.R
+import com.anggitprayogo.footballclub_scheduling.api.ApiRepository
 import com.anggitprayogo.footballclub_scheduling.constant.Constant
 import com.anggitprayogo.footballclub_scheduling.data.ScheduleTeamFavourite
 import com.anggitprayogo.footballclub_scheduling.data.database
@@ -19,6 +20,7 @@ import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.presenter
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.view.DetailScheduleView
 import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.model.DataEvent
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_detail_schedule.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
@@ -47,15 +49,18 @@ class DetailScheduleActivity : AppCompatActivity(), DetailScheduleView{
 
         swipeRefreshLayout = swipe_refesh_layout
 
-        retrofit = ServiceGenerator()
-        presenter = DetailSchedulePresenter(this, retrofit, id)
+        var gson = Gson()
+        var request = ApiRepository()
 
-        presenter.getDetailEvent()
+        retrofit = ServiceGenerator()
+        presenter = DetailSchedulePresenter(this, retrofit, id, gson, request)
+
+        presenter.getDetailEventCoroutine()
 
         getFavouriteState()
 
         swipe_refesh_layout.setOnRefreshListener {
-            presenter.getDetailEvent()
+            presenter.getDetailEventCoroutine()
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.design.R.attr.colorAccent
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
+import android.util.Log.d
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -16,11 +17,15 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.anggitprayogo.footballclub_scheduling.R
+import com.anggitprayogo.footballclub_scheduling.api.ApiRepository
 import com.anggitprayogo.footballclub_scheduling.data.Favourite
 import com.anggitprayogo.footballclub_scheduling.data.database
 import com.anggitprayogo.footballclub_scheduling.network.ServiceGenerator
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.TeamsItem
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
 import org.jetbrains.anko.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
@@ -114,16 +119,18 @@ class TeamActivity : AppCompatActivity(), TeamDetailView {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         retrofit = ServiceGenerator()
-        presenter = TeamDetailsPresenter(this, retrofit)
+        val gson = Gson()
+        val request = ApiRepository()
+        presenter = TeamDetailsPresenter(this, retrofit, gson, request)
 
         teamid = intent.getStringExtra("id")
 
         favouriteState()
         setFavourite()
-        presenter.getTeamDetail(teamid!!)
+        presenter.getTeamDetailCourutine(teamid!!)
 
         swipeRefreshLayout.setOnRefreshListener {
-            presenter.getTeamDetail(teamid!!)
+            presenter.getTeamDetailCourutine(teamid!!)
             swipeRefreshLayout.isRefreshing = false
         }
 

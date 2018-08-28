@@ -14,13 +14,18 @@ import android.widget.*
 
 import com.anggitprayogo.footballclub_scheduling.R
 import com.anggitprayogo.footballclub_scheduling.adapter.TeamsAdapter
+import com.anggitprayogo.footballclub_scheduling.api.ApiRepository
 import com.anggitprayogo.footballclub_scheduling.network.ServiceGenerator
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.Teams
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.TeamsItem
 import com.anggitprayogo.footballclub_scheduling.screen.detailteams.TeamActivity
 import com.anggitprayogo.footballclub_scheduling.screen.teamfragment.presenter.TeamPresenter
 import com.anggitprayogo.footballclub_scheduling.screen.teamfragment.view.TeamsView
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_detail_schedule.*
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.*
@@ -61,22 +66,41 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
 
         rvEvent.adapter = adapter
 
+        val gson = Gson()
+        val request = ApiRepository()
         retrofit = ServiceGenerator()
-        presenter = TeamPresenter(this, retrofit)
+        presenter = TeamPresenter(this, retrofit, gson, request)
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 leagueName = spinner.selectedItem.toString()
-                presenter.getTeams(leagueName)
+                presenter.getTeamsCourutine(leagueName)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
 
         swipeRefreshLayout.onRefresh {
-            presenter.getTeams(leagueName)
+            presenter.getTeamsCourutine(leagueName)
             swipeRefreshLayout.isRefreshing = false
         }
+
+        val amoutOfCapital = async { amountOfCapital() }
+        val amoutOfIncome = async { amountOfIncome() }
+
+        async {
+            d("Nilai","Your Profit is ${amoutOfIncome.await()} And your capital is ${amoutOfCapital.await()}")
+        }
+    }
+
+    suspend fun amountOfCapital(): Int{
+        delay(10_000)
+        return 1000_000_000
+    }
+
+    suspend fun amountOfIncome(): Int{
+        delay(10_000)
+        return 1_200_000_000
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

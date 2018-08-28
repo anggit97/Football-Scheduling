@@ -16,7 +16,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>T
         </activity>
         <activity android:name=".screen.detailschedule.DetailScheduleActivity" />
         <activity android:name=".screen.homeactivity.HomeActivity">

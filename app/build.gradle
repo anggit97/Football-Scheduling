@@ -15,6 +15,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "BASE_URL", "\"https://www.thesportsdb.com/\""
+        buildConfigField "String", "TSDB_API_KEY", "\"1\""
     }
     buildTypes {
         release {
@@ -22,10 +23,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    kotlin{
+        experimental {
+            coroutines "enable"
+        }
+    }
 }
 
 ext {
     anko_version = "0.10.5"
+    anko_courutine = "0.23.4"
     android_design = "27.1.1"
     constraint_layaot = '1.0.2'
     retrofit = '2.3.0'
@@ -48,6 +55,9 @@ dependencies {
     //anko
     implementation "org.jetbrains.anko:anko:$anko_version"
     implementation "org.jetbrains.anko:anko-design:$anko_version"
+
+    //Anko Courutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$anko_courutine"
 
     /*Anko Sqlite*/
     implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
@@ -73,6 +83,7 @@ dependencies {
 
     implementation 'com.android.support:support-v4:27.1.1'
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 
 import com.anggitprayogo.footballclub_scheduling.R
+import com.anggitprayogo.footballclub_scheduling.api.ApiRepository
 import com.anggitprayogo.footballclub_scheduling.constant.Constant
 import com.anggitprayogo.footballclub_scheduling.network.ServiceGenerator
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.DetailScheduleActivity
@@ -20,6 +21,7 @@ import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.mod
 import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.presenter.PrevSchedulePresenter
 import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.ui.PrevScheduleAdapter
 import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.view.PrevScheduleView
+import com.google.gson.Gson
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx
@@ -48,10 +50,12 @@ class PrevScheduleFragment : Fragment(), PrevScheduleView {
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout)
 
         serviceGenerator = ServiceGenerator()
+        val request = ApiRepository()
+        val gson = Gson()
 
-        presenter = PrevSchedulePresenter(this, serviceGenerator)
+        presenter = PrevSchedulePresenter(this, serviceGenerator, gson, request)
 
-        presenter.getSchedules()
+        presenter.getSchedulesCouroutine()
 
 
         rvPrevSchedule.layoutManager = LinearLayoutManager(this!!.activity, LinearLayoutManager.VERTICAL, false)
@@ -63,7 +67,7 @@ class PrevScheduleFragment : Fragment(), PrevScheduleView {
         rvPrevSchedule.adapter = adapter
 
         swipeRefreshLayout.setOnRefreshListener {
-            presenter.getSchedules()
+            presenter.getSchedulesCouroutine()
         }
 
         return view
