@@ -6,6 +6,7 @@ import com.anggitprayogo.footballclub_scheduling.network.ServiceGenerator
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.Teams
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.TeamsItem
 import com.anggitprayogo.footballclub_scheduling.screen.teamfragment.view.TeamsView
+import com.anggitprayogo.footballclub_scheduling.util.CoroutineContextProvider
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.experimental.android.UI
@@ -14,11 +15,13 @@ import org.jetbrains.anko.coroutines.experimental.bg
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.coroutines.experimental.CoroutineContext
 
 class TeamPresenter(val view: TeamsView,
                     val retrofit: ServiceGenerator,
                     val gson: Gson,
-                    val apiRepository: ApiRepository) {
+                    val apiRepository: ApiRepository,
+                    val coroutineContext: CoroutineContextProvider = CoroutineContextProvider()) {
 
     fun getTeams(leagueName: String){
         view.showLoading()
@@ -42,7 +45,7 @@ class TeamPresenter(val view: TeamsView,
     fun getTeamsCourutine(league: String){
         view.showLoading()
 
-        async(UI) {
+        async(coroutineContext.main) {
             val data = bg {
                 gson.fromJson(
                         apiRepository.doRequest(TheSportDBApi.getTeams("English Premier League")),

@@ -1,5 +1,6 @@
 package com.anggitprayogo.footballclub_scheduling.screen.detailschedule
 
+import android.annotation.SuppressLint
 import android.database.sqlite.SQLiteConstraintException
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -28,6 +29,8 @@ import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.toast
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DetailScheduleActivity : AppCompatActivity(), DetailScheduleView{
 
@@ -49,8 +52,8 @@ class DetailScheduleActivity : AppCompatActivity(), DetailScheduleView{
 
         swipeRefreshLayout = swipe_refesh_layout
 
-        var gson = Gson()
-        var request = ApiRepository()
+        val gson = Gson()
+        val request = ApiRepository()
 
         retrofit = ServiceGenerator()
         presenter = DetailSchedulePresenter(this, retrofit, id, gson, request)
@@ -58,6 +61,7 @@ class DetailScheduleActivity : AppCompatActivity(), DetailScheduleView{
         presenter.getDetailEventCoroutine()
 
         getFavouriteState()
+
 
         swipe_refesh_layout.setOnRefreshListener {
             presenter.getDetailEventCoroutine()
@@ -197,5 +201,10 @@ class DetailScheduleActivity : AppCompatActivity(), DetailScheduleView{
         }else{
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(applicationContext, R.drawable.ic_add_to_favorites)
         }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun toSimpleString(date: Date?): String? = with(date ?: Date()) {
+        SimpleDateFormat("EEE, dd MMM yyy").format(this)
     }
 }

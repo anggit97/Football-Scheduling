@@ -131,6 +131,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
                     lparams(matchParent, matchParent)
 
                     rvEvent = recyclerView {
+                        id = R.id.rv_team
                         lparams(matchParent, matchParent)
                         layoutManager = LinearLayoutManager(ctx)
                         adapter = TeamsAdapter(context, teams, {
