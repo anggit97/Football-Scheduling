@@ -5,7 +5,6 @@ import android.util.Log.v
 import com.anggitprayogo.footballclub_scheduling.api.ApiRepository
 import com.anggitprayogo.footballclub_scheduling.api.TheSportDBApi
 import com.anggitprayogo.footballclub_scheduling.network.ServiceGenerator
-import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.Teams
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.experimental.android.UI

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.anggitprayogo.footballclub_scheduling.R
-import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.Teams
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.TeamsItem
 import com.anggitprayogo.footballclub_scheduling.screen.teamfragment.ui.TeamUI
 import com.bumptech.glide.Glide

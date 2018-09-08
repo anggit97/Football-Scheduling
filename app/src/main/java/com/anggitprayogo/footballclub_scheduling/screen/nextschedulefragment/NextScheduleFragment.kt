@@ -11,21 +11,21 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.anggitprayogo.footballclub_scheduling.R
-import com.anggitprayogo.footballclub_scheduling.api.ApiRepository
+import com.anggitprayogo.footballclub_scheduling.api.repository.ScheduleRepository
 import com.anggitprayogo.footballclub_scheduling.constant.Constant
 import com.anggitprayogo.footballclub_scheduling.network.ServiceGenerator
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.DetailScheduleActivity
 import com.anggitprayogo.footballclub_scheduling.screen.nextschedulefragment.presenter.NextSchedulePresenter
 import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.PrevScheduleFragmentUI
 import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.model.DataEvent
+import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.model.Events
 import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.ui.PrevScheduleAdapter
-import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.view.PrevScheduleView
-import com.google.gson.Gson
+import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.view.ScheduleView
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 
-class NextScheduleFragment : Fragment(), PrevScheduleView{
+class NextScheduleFragment : Fragment(), ScheduleView{
 
     var events: MutableList<DataEvent>? = mutableListOf()
     lateinit var presenter: NextSchedulePresenter
@@ -41,22 +41,18 @@ class NextScheduleFragment : Fragment(), PrevScheduleView{
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         var view = PrevScheduleFragmentUI<Fragment>().createView(AnkoContext.Companion.create(ctx, this))
-        retrofit = ServiceGenerator()
 
-        val request = ApiRepository()
-        val gson = Gson()
-
-        presenter = NextSchedulePresenter(this, retrofit, gson, request)
+        presenter = NextSchedulePresenter(this, ScheduleRepository())
 
         rvNextSchedule = view.findViewById(R.id.rv_prev_schedule)
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout)
 
         setupRecyclerview()
 
-        presenter.getNextSchedulesCoroutine()
+        presenter.getNextSchedules()
 
         swipeRefreshLayout.setOnRefreshListener {
-            presenter.getNextSchedulesCoroutine()
+            presenter.getNextSchedules()
         }
 
         // Inflate the layout for this fragment
@@ -103,6 +99,12 @@ class NextScheduleFragment : Fragment(), PrevScheduleView{
 
         adapter.notifyDataSetChanged()
 
+    }
+
+    override fun onDataLoaded(data: Events?) {
+    }
+
+    override fun onDataError() {
     }
 
 }

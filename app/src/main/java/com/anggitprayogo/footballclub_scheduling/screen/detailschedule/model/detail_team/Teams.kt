@@ -2,7 +2,7 @@ package com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.de
 
 import com.google.gson.annotations.SerializedName
 
-data class Teams(
+data class EventsTeams(
 	@SerializedName("teams")
 	var teams: List<TeamsItem>
 )

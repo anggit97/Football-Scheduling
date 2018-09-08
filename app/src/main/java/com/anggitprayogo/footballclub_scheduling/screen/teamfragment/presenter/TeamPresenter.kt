@@ -3,8 +3,8 @@ package com.anggitprayogo.footballclub_scheduling.screen.teamfragment.presenter
 import com.anggitprayogo.footballclub_scheduling.api.ApiRepository
 import com.anggitprayogo.footballclub_scheduling.api.TheSportDBApi
 import com.anggitprayogo.footballclub_scheduling.network.ServiceGenerator
-import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.Teams
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.TeamsItem
+import com.anggitprayogo.footballclub_scheduling.screen.detailteams.Teams
 import com.anggitprayogo.footballclub_scheduling.screen.teamfragment.view.TeamsView
 import com.anggitprayogo.footballclub_scheduling.util.CoroutineContextProvider
 import com.google.gson.Gson

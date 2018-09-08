@@ -1,7 +1,7 @@
 package com.anggitprayogo.footballclub_scheduling.network
 
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_event.Response
-import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.Teams
+import com.anggitprayogo.footballclub_scheduling.screen.detailteams.Teams
 import com.anggitprayogo.footballclub_scheduling.screen.prevschedulefragment.model.Events
 import retrofit2.Call
 import retrofit2.http.GET

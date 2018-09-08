@@ -16,7 +16,6 @@ import com.anggitprayogo.footballclub_scheduling.R
 import com.anggitprayogo.footballclub_scheduling.adapter.TeamsAdapter
 import com.anggitprayogo.footballclub_scheduling.api.ApiRepository
 import com.anggitprayogo.footballclub_scheduling.network.ServiceGenerator
-import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.Teams
 import com.anggitprayogo.footballclub_scheduling.screen.detailschedule.model.detail_team.TeamsItem
 import com.anggitprayogo.footballclub_scheduling.screen.detailteams.TeamActivity
 import com.anggitprayogo.footballclub_scheduling.screen.teamfragment.presenter.TeamPresenter
