@@ -98,6 +98,7 @@ dependencies {
 
     /*Mockito*/
     testImplementation 'org.mockito:mockito-core:2.21.0'
+    testImplementation 'com.nhaarman:mockito-kotlin:1.5.0'
     testImplementation "org.mockito:mockito-inline:2.19.0"
 
     implementation 'com.android.support:support-v4:27.1.1'
@@ -105,4 +106,12 @@ dependencies {
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:2.2.2") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'design'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    }
 }

@@ -19,13 +19,18 @@ import org.junit.runner.RunWith
 class TeamsFragmentTest {
 
     @Rule
-    @JvmField var activityRule = ActivityTestRule(HomeActivity::class.java)
+    @JvmField
+    var activityRule = ActivityTestRule(HomeActivity::class.java)
 
     @Test
     fun testRecyclerViewBehavior(){
+        Thread.sleep(5000)
         Espresso.onView(ViewMatchers.withId(R.id.rv_team))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
         Espresso.onView(ViewMatchers.withId(R.id.rv_team)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(10))
+
+        Thread.sleep(5000)
         Espresso.onView(ViewMatchers.withId(R.id.rv_team)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(10, ViewActions.click()))
     }
 

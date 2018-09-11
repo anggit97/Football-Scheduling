@@ -17,6 +17,5 @@ class ApiRepositoryTest {
 
         apiRepository.doRequest(url)
         verify(apiRepository).doRequest(url)
-
     }
 }
